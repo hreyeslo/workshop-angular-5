@@ -9,21 +9,21 @@ import { router } from './router.conf';
 // Components
 import { PublicComponent } from './ejercicio/public/public.component';
 import { PublicChildComponent } from './ejercicio/public-child/public-child.component';
-import { AuthService } from './ejercicio/auth.service';
+import { ForbiddenComponent } from './ejercicio/forbidden/forbidden.component';
 
 
 @NgModule({
   imports: [
-    BrowserModule, 
+    BrowserModule,
     RouterModule.forRoot(router)
   ],
   declarations: [
     AppComponent, 
     HelloComponent,
     PublicComponent,
-    PublicChildComponent
+    PublicChildComponent,
+    ForbiddenComponent
   ],
-  bootstrap: [AppComponent],
-  providers: [AuthService]
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

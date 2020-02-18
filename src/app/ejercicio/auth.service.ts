@@ -12,8 +12,15 @@ import {
   UrlSegment
 } from "@angular/router";
 
-@Injectable()
-export class AuthService implements CanActivate, CanActivateChild, CanLoad, Resolve {
+export interface User {
+  name?: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService
+  implements CanActivate, CanActivateChild, CanLoad, Resolve<User> {
 
   constructor() {}
 
@@ -41,8 +48,20 @@ export class AuthService implements CanActivate, CanActivateChild, CanLoad, Reso
     return true;
   }
 
-  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean>|Promise<boolean>|boolean {
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]
+  ): Observable<boolean> | Promise<boolean> | boolean {
     // Validar parámetro auth
     return true;
+  }
+
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> | Promise<any> | any {
+    return Promise.resolve({
+      name: "Angular"
+    });
   }
 }

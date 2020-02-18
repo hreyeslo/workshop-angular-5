@@ -2,6 +2,9 @@ import { Routes } from "@angular/router";
 
 import { PublicComponent } from "./ejercicio/public/public.component";
 import { PublicChildComponent } from "./ejercicio/public-child/public-child.component";
+import { ForbiddenComponent } from './ejercicio/forbidden/forbidden.component';
+
+import { AuthService } from './ejercicio/auth.service';
 
 export const router: Routes = [
   {
@@ -13,8 +16,11 @@ export const router: Routes = [
     path: "public",
     component: PublicComponent,
     data: {
-      access: true
+      access: true,
     },
+    resolve: {},
+    canActivate: [],
+    canActivateChild: [],
     children: [
       {
         path: "child",
@@ -30,6 +36,12 @@ export const router: Routes = [
     loadChildren: () => import('./ejercicio/lazy/lazy.module').then(m => m.LazyModule),
     data: {
       auth: true
-    }
+    },
+    canLoad: []
+  },
+  {
+    path: '**',
+    component: ForbiddenComponent,
+    pathMatch: 'full'
   }
 ];

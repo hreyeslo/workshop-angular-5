@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from '../auth.service';
 
 @Component({
   selector: 'app-public',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicComponent implements OnInit {
 
-  constructor() { }
+  user: User = {};
+
+  constructor(private _route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.user = this._route.snapshot.data || {};
   }
 
 }
