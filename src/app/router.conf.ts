@@ -17,11 +17,6 @@ export const router: Routes = [
     },
     children: [
       {
-        path: "",
-        redirectTo: "child",
-        pathMatch: "full"
-      },
-      {
         path: "child",
         component: PublicChildComponent,
         data: {
@@ -29,5 +24,12 @@ export const router: Routes = [
         }
       }
     ]
+  },
+  {
+    path: 'lazy',
+    loadChildren: () => import('./ejercicio/lazy/lazy.module').then(m => m.LazyModule),
+    data: {
+      auth: true
+    }
   }
 ];

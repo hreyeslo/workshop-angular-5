@@ -9,6 +9,7 @@ import { router } from './router.conf';
 // Components
 import { PublicComponent } from './ejercicio/public/public.component';
 import { PublicChildComponent } from './ejercicio/public-child/public-child.component';
+import { AuthService } from './ejercicio/auth.service';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { PublicChildComponent } from './ejercicio/public-child/public-child.comp
     PublicComponent,
     PublicChildComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AuthService]
 })
 export class AppModule {}
